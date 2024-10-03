@@ -11,7 +11,7 @@ class DashboardController extends Controller
 
         Post::create([
             'content' => 'test',
-            'likes' => 16, 
+            'likes' => 17, 
         ]);
 
         $users = [
