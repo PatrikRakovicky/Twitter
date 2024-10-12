@@ -28,7 +28,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <span>Settings</span></a>
+                                    <span>Setting</span></a>
                             </li>
                         </ul>
                     </div>
