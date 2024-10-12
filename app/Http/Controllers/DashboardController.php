@@ -22,7 +22,7 @@ class DashboardController extends Controller
                 "name" => "Robo"
             ],
             [
-                "name" => "Arpád"
+                "name" => "Jano"
             ]
         ];
 
