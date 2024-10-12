@@ -38,29 +38,43 @@
                 </div>
             </div>
             <div class="col-6">
+                {{-- -------------------------------------------- --}}
+                @if (session() -> has('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Idea created Successfully
+                    {{ session() -> get('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+                @endif
+
+                {{-- Create post --}}
+
                 <h4> Share yours ideas </h4>
                 <div class="row">
-                    <div class="mb-3">
-                        <textarea class="form-control" id="idea" rows="3"></textarea>
-                    </div>
-                    <div class="">
-                        <button class="btn btn-dark"> Share </button>
-                    </div>
+                    <form action="{{ route('post.store') }}" method="post">
+                        @csrf
+                        <div class="mb-3">
+                            <textarea class="form-control" id="idea" name="content" rows="3"></textarea>
+                            @error('content')
+                                <span style="color: red">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="">
+                            <button class="btn btn-dark"> Share </button>
+                        </div>
+                    </form>
                 </div>
                 <hr>
                 
+                {{-- -------------------------------------------- --}}
                 {{-- Create posts from dashboard controller names --}}
 
                 @foreach ($posts as $post)
                     @include('inc.post-card')
-                @endforeach    
+                @endforeach
                 
-                {{-- -------------------------------------------------------------------------------------------------- --}}
+                {{-- -------------------------------------------- --}}
                 
+
             </div>
             <div class="col-3">
                 <div class="card">

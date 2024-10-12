@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('content');
             $table->integer('likes');
-            $table->timestamps();
+            $table->timestamps(); //date created at; updated at
         });
     }
 
