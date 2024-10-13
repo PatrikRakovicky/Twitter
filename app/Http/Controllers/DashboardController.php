@@ -9,11 +9,6 @@ class DashboardController extends Controller
 {
     public function index() {
 
-        Post::create([
-            'content' => 'test',
-            'likes' => 16, 
-        ]);
-
         $users = [
             [
                 "name" => "Fero"
