@@ -27,6 +27,6 @@ class PostController extends Controller
     }
 
     public function show(Post $post) {
-        return view('profile');
+        return view('viewed-post', ['post' => $post]);
     }
 }
