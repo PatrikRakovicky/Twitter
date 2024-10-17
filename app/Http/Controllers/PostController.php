@@ -29,4 +29,21 @@ class PostController extends Controller
     public function show(Post $post) {
         return view('post.show', ['post' => $post]);
     }
+
+    public function edit(Post $post) {
+        $editing = true;
+        return view('post.show', compact('post', 'editing'));
+    }
+
+    public function update(Post $post) {
+
+        request() -> validate([
+            'content' => 'required|min:1|max:255'
+        ]);
+
+        $post -> content = request() -> get('content', '');
+        $post -> save();
+
+        return redirect() -> route('post.show', $post -> id)->with('success', "Idea updated successfully!");
+    }
 }

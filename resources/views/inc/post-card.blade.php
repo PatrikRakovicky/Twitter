@@ -15,29 +15,41 @@
                     </div>
                 </div>
                 {{-- -------------------------------------------- --}}
-                <div>
-                    <form action="{{ route('post.show', $post -> id) }}" method="get">
-                        @csrf
-                        <button type="submit">View</button>
-                    </form>
-                </div>
-                {{-- -------------------------------------------- --}}
-                <div>
-                    <form action="{{ route('post.destroy', $post -> id) }}" method="post">
-                        @method('delete')
-                        @csrf
-                        <button type="submit">Delete</button>
-                    </form>
-                </div>
+                <form action="{{ route('post.destroy', $post->id) }}" method="post" >
+                    @method('delete')
+                    @csrf
+                    <a class="mx-2" href="{{ route('post.edit', $post->id)}}">Edit</a>
+                    <a class="mx-2" href="{{ route('post.show', $post->id)}}">View</a>
+                    <button type="submit">delete</button>
+                </form>
                 {{-- -------------------------------------------- --}}
             </div>
         </div>
         <div class="card-body">
+
+          @if($editing ?? false)
+          
+            <form action="{{ route('post.update', $post -> id) }}" method="post">
+                @csrf
+                @method('put')
+                <div class="mb-3">
+                    <textarea class="form-control" id="content" name="content" rows="3">{{ $post -> content }}</textarea>
+                  @error('content')
+                        <span style="color: red">{{ $message }}</span>
+                  @enderror
+                </div>
+                <div class="">
+                    <button class="btn btn-dark mb-2"> Update </button>
+                </div>
+            </form>
+
+          @else
             <p class="fs-6 fw-light text-muted">
                 {{-- -------------------------------------------- --}}
                 {{ $post -> content }}
                 {{-- -------------------------------------------- --}}
             </p>
+            @endif
             <div class="d-flex justify-content-between">
                 <div>
                     <a href="#" class="fw-light nav-link fs-6"> <span class="fas fa-heart me-1">
