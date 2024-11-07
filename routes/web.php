@@ -4,20 +4,21 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [DashboardController::class, 'index']) -> name('dashboard.index');
-
 Route::get('/profile', [UserController::class, 'index']);
-
 Route::post('/post', [PostController::class, 'store']) -> name('post.store');
-
 Route::delete('/post/{post}', [PostController::class, 'destroy']) -> name('post.destroy');
-
 Route::get('/post/{post}', [PostController::class, 'show']) -> name('post.show');
 
 Route::get('/post/{post}/edit', [PostController::class, 'edit']) -> name('post.edit');
 Route::put('/post/{post}', [PostController::class, 'update']) -> name('post.update');
 
 Route::post('/post/{post}/comments', [CommentController::class, 'store']) -> name('post.comments.store');
+Route::post('/post/{post}/comments', [CommentController::class, 'store']) -> name('post.comments.store');
+
+Route::get('/register', [AuthController::class, 'register']) -> name('register');
+Route::post('/register', [AuthController::class, 'store']);
